@@ -4,6 +4,7 @@ package com.example.nisargdoshi.ticktingapplication
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,15 +49,22 @@ class FragmentUserDetail : Fragment() {
 
 
         view.btn_usersubmit_registeractivity.setOnClickListener() {
-
-            if (et_userfirstname_registeractivity.text.equals("") || et_userfirstname_registeractivity.text == null) {
+            Log.d("firstnameee","===="+et_userfirstname_registeractivity.text.toString());
+           val firstname=et_userfirstname_registeractivity.text.toString()
+           val lastname=et_userlastname_registeractivity.text.toString()
+           val email=et_useremail_registeractivity.text.toString()
+           val pass= et_userpassword_registeractivity.text.toString()
+            if(firstname.toString().equals("") || firstname.toString()==null) {
                 Toast.makeText(activity,"Please enter first name",Toast.LENGTH_LONG).show()
-            } else if (et_userlastname_registeractivity.text.equals("") || et_userlastname_registeractivity.text == null) {
-                Toast.makeText(activity,"Please enter last name",Toast.LENGTH_LONG).show()
-            } else if (et_userpassword_registeractivity.text.equals("") || et_userpassword_registeractivity.text == null) {
+            }
+            else if(lastname.toString().equals("") || lastname.toString()==null) {
+            Toast.makeText(activity,"Please enter last name",Toast.LENGTH_LONG).show()
+            }
+           else if (email.equals("") || email.toString() == null) {
+                Toast.makeText(activity,"Please enter email",Toast.LENGTH_LONG).show()
+            }
+            else if (pass.equals("") || pass.toString() == null) {
                 Toast.makeText(activity,"Please enter passsword",Toast.LENGTH_LONG).show()
-            } else if (et_useremail_registeractivity.text.equals("") || et_useremail_registeractivity.text == null) {
-                Toast.makeText(activity,"Please enter email id",Toast.LENGTH_LONG).show()
             }
             /*else if (!et_useremail_registeractivity.text.matches(emailpattern)) {
                 Toast.makeText(activity,"Invalid email id",Toast.LENGTH_LONG).show()
@@ -79,4 +87,5 @@ class FragmentUserDetail : Fragment() {
             }
         }
     }
+
 }

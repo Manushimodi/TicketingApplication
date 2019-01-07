@@ -58,38 +58,61 @@ class FragmentOrganizatoinDetail : Fragment() {
             val oemail = et_organizationemail_registeractivity.text.toString()
             val ocontact = et_organizationcontact_registeractivity.text.toString()
 
+            if(oname.toString().equals("") || oname.toString()==null){
+                Toast.makeText(activity,"Please enter name",Toast.LENGTH_LONG).show()
+            }
+            else if(owebsite.toString().equals("") || owebsite.toString()==null){
+                Toast.makeText(activity,"Please enter website",Toast.LENGTH_LONG).show()
+            }
+
+            else if(oemail.toString().equals("") || oemail.toString()==null){
+                Toast.makeText(activity,"Please enter email",Toast.LENGTH_LONG).show()
+            }
+
+            else if(ocontact.toString().equals("") || ocontact.toString()==null){
+                Toast.makeText(activity,"Please enter contact number",Toast.LENGTH_LONG).show()
+            }
+
+            else {
+                mAuth!!.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(RegisterActivity()) { task ->
+                        if (task.isSuccessful) {
+                            val user=mAuth!!.currentUser
+
+                            user!!.sendEmailVerification()
+                                .addOnCompleteListener(RegisterActivity()){task ->
+                                    if(task.isSuccessful){
+                                        var mDatabase1: DatabaseReference? = null
+                                        var mDatabase2: DatabaseReference? = null
+
+                                        mDatabase1 =
+                                                mDatabase!!.reference!!.child("organizations/" + mAuth!!.uid + "/organizationdetails")
+                                        mDatabase2 =
+                                                mDatabase!!.reference!!.child("organizations/" + mAuth!!.uid + "/userdetails/superadmin/" + mAuth!!.uid)
 
 
-            mAuth!!.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(RegisterActivity()){ task ->
-                    if(task.isSuccessful){
-                        Log.d("Registrationmessage","successfull")
+                                        mDatabase1!!.child("organizationname").setValue(oname);
+                                        mDatabase1!!.child("organizationwebsite").setValue(owebsite)
+                                        mDatabase1!!.child("organizationemailid").setValue(oemail)
+                                        mDatabase1!!.child("organizationcontactnumber").setValue(ocontact)
+                                        mDatabase2!!.child("firstname").setValue(firstname)
+                                        mDatabase2!!.child("lastname").setValue(lastname)
 
-                        var mDatabase1: DatabaseReference? = null
-                        var mDatabase2: DatabaseReference? = null
-
-                        mDatabase1=mDatabase!!.reference!!.child("organizations/"+mAuth!!.uid+"/organizationdetails")
-                        mDatabase2=mDatabase!!.reference!!.child("organizations/"+mAuth!!.uid+"/userdetails/superadmin/"+mAuth!!.uid)
-
-                        mDatabase1!!.child("organizationname").setValue(oname);
-                        mDatabase1!!.child("organizationwebsite").setValue(owebsite)
-                        mDatabase1!!.child("organizationemailid").setValue(oemail)
-                        mDatabase1!!.child("organizationcontactnumber").setValue(ocontact)
-
-                        mDatabase2!!.child("firstname").setValue(firstname)
-                        mDatabase2!!.child("lastname").setValue(lastname)
-                    }
-                    else{
-                        Log.d("Registrationmessage","fail")
+                                        Toast.makeText(context,"Email verification mail sent",Toast.LENGTH_LONG).show()
+                                    }
+                                    else{
+                                        Toast.makeText(context,"Something went wrong in sending verification email",Toast.LENGTH_LONG).show()
+                                        Log.d("Registrationmessage", "fail")
+                                    }
+                                }
+                        } else {
+                            Toast.makeText(context,"Something went wrong in creating user",Toast.LENGTH_LONG).show()
+                            Log.d("Registrationmessage", "fail")
+                        }
                     }
                 }
-        }
-
-        Log.d("valueee","==="+firstname+"++"+lastname+"=="+email+"--"+password)
-       // Toast.makeText(activity,"==="+value,Toast.LENGTH_LONG).show();
-
+            }
     }
-
 }
 
 

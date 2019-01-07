@@ -1,9 +1,11 @@
 package com.example.nisargdoshi.ticktingapplication
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -54,7 +56,34 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         mProgressBar!!.dismiss()
-                        Toast.makeText(applicationContext, "login successfull", Toast.LENGTH_SHORT).show()
+                        var user=mAuth!!.currentUser
+                        if(user!!.isEmailVerified){
+                            Toast.makeText(applicationContext, "login successfull"+user!!.isEmailVerified, Toast.LENGTH_SHORT).show()
+                        }else {
+                            val builder = AlertDialog.Builder(this@LoginActivity)
+                            builder.setTitle("Email verification alert!")
+                            builder.setMessage("Please verify your email to continue...")
+                            builder.setPositiveButton("RESEND") { dialog, which ->
+                                user.sendEmailVerification()
+                                    .addOnCompleteListener(this) { task ->
+                                        if (task.isSuccessful) {
+                                            Toast.makeText(this, "Email verification mail sent", Toast.LENGTH_LONG)
+                                                .show()
+                                        } else {
+                                            Toast.makeText(
+                                                this,
+                                                "Something went wrong in sending verification email",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
+                                    }
+                                }
+                                builder.setNeutralButton("Cancel") { _, _ ->
+                                }
+                                val dialog: AlertDialog = builder.create()
+                                dialog.show()
+
+                        }
                     } else {
                         mProgressBar!!.dismiss()
                         Toast.makeText(applicationContext, "Authentication failed!", Toast.LENGTH_SHORT).show()
