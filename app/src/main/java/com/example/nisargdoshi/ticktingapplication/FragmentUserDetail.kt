@@ -26,15 +26,15 @@ private const val ARG_PARAM2 = "param2"
  */
 class FragmentUserDetail : Fragment() {
 
-    /*var emailpattern = ("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+    var emailpattern = ("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
             + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
             + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
             + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
             + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-            + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$") as Regex
+            + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").toRegex()
 
-    var  passwordpattern= "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})" as Regex
-*/
+
+    var  passwordpattern= "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})".toRegex()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,12 +66,13 @@ class FragmentUserDetail : Fragment() {
             else if (pass.equals("") || pass.toString() == null) {
                 Toast.makeText(activity,"Please enter passsword",Toast.LENGTH_LONG).show()
             }
-            /*else if (!et_useremail_registeractivity.text.matches(emailpattern)) {
+            else if (!et_useremail_registeractivity.text.matches(emailpattern)) {
                 Toast.makeText(activity,"Invalid email id",Toast.LENGTH_LONG).show()
             }
-            else if (!et_useremail_registeractivity.text.matches(passwordpattern)) {
+
+            else if (!et_userpassword_registeractivity.text.matches(passwordpattern)) {
                 Toast.makeText(activity,"Password must contain 6 characters or more with at least one uppercase letter, one special character, one number and one letter.",Toast.LENGTH_LONG).show()
-            }*/
+            }
             else {
                 val fragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
                 val args = Bundle()

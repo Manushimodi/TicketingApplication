@@ -30,6 +30,16 @@ class FragmentOrganizatoinDetail : Fragment() {
     private var mAuth: FirebaseAuth? = null
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
+    var emailpattern = ("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+            + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+            + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+            + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+            + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+            + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").toRegex()
+    val websitepattern = "^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]".toRegex()
+
+    var mobilePatternt="^[789]\\d{9}\$".toRegex()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,15 +74,21 @@ class FragmentOrganizatoinDetail : Fragment() {
             else if(owebsite.toString().equals("") || owebsite.toString()==null){
                 Toast.makeText(activity,"Please enter website",Toast.LENGTH_LONG).show()
             }
-
+            else if(!owebsite.toString().matches(websitepattern)){
+                Toast.makeText(activity,"Enter valid url",Toast.LENGTH_LONG).show()
+            }
             else if(oemail.toString().equals("") || oemail.toString()==null){
                 Toast.makeText(activity,"Please enter email",Toast.LENGTH_LONG).show()
             }
-
+            else if(!oemail.toString().matches(emailpattern)){
+                Toast.makeText(activity,"Enter valid email",Toast.LENGTH_LONG).show()
+            }
             else if(ocontact.toString().equals("") || ocontact.toString()==null){
                 Toast.makeText(activity,"Please enter contact number",Toast.LENGTH_LONG).show()
             }
-
+            else if(!ocontact.toString().matches(mobilePatternt)){
+                Toast.makeText(activity,"Enter valid number",Toast.LENGTH_LONG).show()
+            }
             else {
                 mAuth!!.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(RegisterActivity()) { task ->
