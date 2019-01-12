@@ -58,7 +58,10 @@ class LoginActivity : AppCompatActivity() {
                         mProgressBar!!.dismiss()
                         var user=mAuth!!.currentUser
                         if(user!!.isEmailVerified){
+                            val intent = Intent(this, superadmin_homepage::class.java)
+                            startActivity(intent)
                             Toast.makeText(applicationContext, "login successfull"+user!!.isEmailVerified, Toast.LENGTH_SHORT).show()
+
                         }else {
                             val builder = AlertDialog.Builder(this@LoginActivity)
                             builder.setTitle("Email verification alert!")

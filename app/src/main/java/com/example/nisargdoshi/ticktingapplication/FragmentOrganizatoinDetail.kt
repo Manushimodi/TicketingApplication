@@ -61,7 +61,7 @@ class FragmentOrganizatoinDetail : Fragment() {
         val lastname = arguments!!.getString("lastname")
         val email = arguments!!.getString("email")
         val password = arguments!!.getString("password")
-//validation
+
         btn_organizationregister_registeractivity.setOnClickListener(){
             val oname = et_organizationname_registeractivity.text.toString()
             val owebsite = et_organizationwebsite_registeractivity.text.toString()
