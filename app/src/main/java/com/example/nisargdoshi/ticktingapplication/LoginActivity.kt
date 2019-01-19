@@ -2,6 +2,7 @@ package com.example.nisargdoshi.ticktingapplication
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -24,6 +25,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         setTitle("Login")
+
+
         mAuth = FirebaseAuth.getInstance()
 
 
@@ -58,6 +61,14 @@ class LoginActivity : AppCompatActivity() {
                         mProgressBar!!.dismiss()
                         var user=mAuth!!.currentUser
                         if(user!!.isEmailVerified){
+
+                            val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+                            var editor = sharedPreference.edit()
+                            editor.putString("username",email)
+                            editor.putString("password",pwd)
+                            editor.commit()
+
+
                             val intent = Intent(this, superadmin_homepage::class.java)
                             startActivity(intent)
                             Toast.makeText(applicationContext, "login successfull"+user!!.isEmailVerified, Toast.LENGTH_SHORT).show()
