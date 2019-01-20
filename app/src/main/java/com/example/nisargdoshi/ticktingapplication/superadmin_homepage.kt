@@ -23,6 +23,7 @@ import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.GridLayout
+import com.example.nisargdoshi.ticktingapplication.Model.ticketmodel
 import kotlinx.android.synthetic.main.content_superadmin_homepage.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -30,7 +31,7 @@ import kotlin.collections.ArrayList
 
 class superadmin_homepage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    var dataarray: ArrayList<String>? = ArrayList<String>()
+    var dataarray: ArrayList<ticketmodel>? = ArrayList<ticketmodel>()
    // lateinit var actity:Activity
 
 
@@ -38,22 +39,56 @@ class superadmin_homepage : AppCompatActivity(), NavigationView.OnNavigationItem
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_superadmin_homepage)
         setSupportActionBar(toolbar)
+
+
+        /*var ti=ticketmodel()
+        ti.ticketcategory="yoooo"
+        Log.d("modeldata==","***"+ti.ticketcategory+"=="+ti.ticketid)
+*/
+
+
        // actity=this
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
 
-        dataarray!!.add("manushi")
-        dataarray!!.add("Nisarg")
-        dataarray!!.add("modi")
-        dataarray!!.add("Divyadidi")
-        dataarray!!.add("param")
-        dataarray!!.add("champa")
 
+        var ti=ticketmodel()
+        ti.ticketid="#00001"
+        ti.tickettitle="Problem in manushi"
+        ti.ticketdesc="she has more mind"
+        ti.ticketdepartment="Crime"
+        ti.ticketcategory="thief"
+        ti.ticketdate="20/01/2019"
+        ti.tickettime="02:29 PM"
+
+        var ti1=ticketmodel()
+        ti1.ticketid="#00002"
+        ti1.tickettitle="Problem in manushi"
+        ti1.ticketdesc="she has more mind"
+        ti1.ticketdepartment="Crime"
+        ti1.ticketcategory="thief"
+        ti1.ticketdate="20/01/2019"
+        ti1.tickettime="02:29 PM"
+
+        var ti2=ticketmodel()
+        ti2.ticketid="#00003"
+        ti2.tickettitle="Problem in manushi"
+        ti2.ticketdesc="she has more mind"
+        ti2.ticketdepartment="Crime"
+        ti2.ticketcategory="thief"
+        ti2.ticketdate="20/01/2019"
+        ti2.tickettime="02:29 PM"
+
+
+        dataarray!!.add(ti)
+        dataarray!!.add(ti1)
+        dataarray!!.add(ti2)
+        dataarray!!.add(ticketmodel())
 
         val adapter =  recyclerviewadater(this,dataarray!!)
-        val layoutmanager:RecyclerView.LayoutManager=GridLayoutManager(this,3)
+        val layoutmanager:RecyclerView.LayoutManager=LinearLayoutManager(this@superadmin_homepage)
         recyclerview.layoutManager=layoutmanager
         recyclerview.adapter=adapter
         adapter.notifyDataSetChanged()
@@ -92,7 +127,7 @@ class superadmin_homepage : AppCompatActivity(), NavigationView.OnNavigationItem
         var searchview= searchitem.actionView as SearchView
 
 
-        searchview.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+       /* searchview.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 Log.d("searchtext==","***"+p0)
                 if(p0.equals("") ||p0==null){
@@ -141,7 +176,7 @@ class superadmin_homepage : AppCompatActivity(), NavigationView.OnNavigationItem
                     return true
                 }
         })
-
+*/
 /*
         var mSearchAutoComplete =
             searchview.findViewById(android.support.v7.appcompat.R.id.search_src_text) as SearchView.SearchAutoComplete

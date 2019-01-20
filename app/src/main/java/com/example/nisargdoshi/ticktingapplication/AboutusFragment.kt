@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.nisargdoshi.ticktingapplication.Model.ticketmodel
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,9 +23,10 @@ class AboutusFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View? { // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_aboutus, container, false)
+
+
     }
 
 

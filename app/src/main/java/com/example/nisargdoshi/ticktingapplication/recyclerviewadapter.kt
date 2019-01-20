@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.nisargdoshi.ticktingapplication.Model.ticketmodel
 import com.example.nisargdoshi.ticktingapplication.R
 import com.example.nisargdoshi.ticktingapplication.recyclerviewholder
 import com.example.nisargdoshi.ticktingapplication.superadmin_homepage
@@ -13,7 +14,7 @@ import com.example.nisargdoshi.ticktingapplication.superadmin_homepage
 import java.util.ArrayList
 import java.util.zip.Inflater
 
-class  recyclerviewadater(activity: Activity,data1:ArrayList<String>): RecyclerView.Adapter<recyclerviewholder>() {
+class  recyclerviewadater(activity: Activity,data1:ArrayList<ticketmodel>): RecyclerView.Adapter<recyclerviewholder>() {
 
       var activity=activity
       var data=data1
@@ -24,7 +25,7 @@ class  recyclerviewadater(activity: Activity,data1:ArrayList<String>): RecyclerV
        val layoutInflater:LayoutInflater = LayoutInflater.from(activity)
         // Inflate the layout using LayoutInflater
         val view: View = layoutInflater.inflate(
-            R.layout.layout, // Custom view/ layout
+            R.layout.ticketlayout, // Custom view/ layout
             p0, // Root layout to attach the view
             false )// Attach with root layout or not)
         return recyclerviewholder(view)
