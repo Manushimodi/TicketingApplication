@@ -12,13 +12,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 import kotlinx.android.synthetic.main.fragment_fragment_organizatoin_detail.*
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -114,11 +110,13 @@ class FragmentOrganizatoinDetail : Fragment() {
                                         mDatabase2!!.child("firstname").setValue(firstname)
                                         mDatabase2!!.child("lastname").setValue(lastname)
 
+
+
                                         Toast.makeText(context,"Email verification mail sent",Toast.LENGTH_LONG).show()
                                     }
                                     else{
                                         Toast.makeText(context,"Something went wrong in sending verification email",Toast.LENGTH_LONG).show()
-                                        Log.d("Registrationmessage", "fail")
+                                        //Log.d("Registrationmessage", "fail")
                                     }
                                 }
                         } else {

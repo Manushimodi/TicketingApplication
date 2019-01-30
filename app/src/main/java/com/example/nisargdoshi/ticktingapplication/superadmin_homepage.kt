@@ -3,6 +3,7 @@ package com.example.nisargdoshi.ticktingapplication
 import android.annotation.SuppressLint
 import android.app.ActionBar
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -23,7 +24,9 @@ import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.GridLayout
+import android.widget.Toast
 import com.example.nisargdoshi.ticktingapplication.Model.ticketmodel
+import com.google.firebase.database.ServerValue
 import kotlinx.android.synthetic.main.content_superadmin_homepage.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -41,6 +44,11 @@ class superadmin_homepage : AppCompatActivity(), NavigationView.OnNavigationItem
         setSupportActionBar(toolbar)
 
 
+        //val timestampNow = HashMap<String,Object>()
+      //  timestampNow.put("timestamp", ServerValue.TIMESTAMP);
+
+
+    //    Log.d("date----","==="+ ServerValue.TIMESTAMP.)
         /*var ti=ticketmodel()
         ti.ticketcategory="yoooo"
         Log.d("modeldata==","***"+ti.ticketcategory+"=="+ti.ticketid)
@@ -48,9 +56,13 @@ class superadmin_homepage : AppCompatActivity(), NavigationView.OnNavigationItem
 
 
        // actity=this
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        fab.setOnClickListener { root1 ->
+            var intent = Intent(this,TicketCreateActivity::class.java)
+            startActivity(intent)
+
+
+
+
         }
 
 

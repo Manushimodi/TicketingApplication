@@ -1,7 +1,6 @@
 package com.example.nisargdoshi.ticktingapplication
 
 import android.app.Activity
-import android.app.PendingIntent.getActivity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout

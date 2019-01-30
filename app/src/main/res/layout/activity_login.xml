@@ -62,7 +62,7 @@
                     android:orientation="horizontal"
                     android:layout_margin="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:weightSum="2">
 
                     <TextView
@@ -84,6 +84,21 @@
                             android:textColor="#0000ff"
                             android:textSize="15dp"
                             android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.gms.common.SignInButton
+                        android:id="@+id/btn_googlebutton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:padding="8dp"
+                        />
+
             </LinearLayout>
     </LinearLayout>
 </LinearLayout>
