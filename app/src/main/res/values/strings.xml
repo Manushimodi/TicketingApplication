@@ -12,6 +12,10 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_admin">AdminActivity</string>
     <string name="web_client_id">692766949743-esb66n87oq8j0vpbgm1n785dcrojv0lo.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">680588732342931</string>
+    <string name="fb_login_protocol_scheme">fb680588732342931</string>
+
+
     <array name="itemlist">
         <item>asdfghjkl;</item>
         <item>qwertyuiop</item>
