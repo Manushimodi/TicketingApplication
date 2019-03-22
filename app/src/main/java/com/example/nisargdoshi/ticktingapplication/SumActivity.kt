@@ -12,10 +12,9 @@ class SumActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sum)
 
-        var TABLE_PRODUCTS="ijioio"
+        val dbHandler = databasehandler(this, null, null, 1)
 
-        val CREATE_PRODUCTS_TABLE1 = ("CREATE TABLE "+TABLE_PRODUCTS
-
+        dbHandler.addProduct()
 
 /*
         var intent = intent
@@ -23,10 +22,10 @@ class SumActivity : AppCompatActivity() {
         intent.putExtra("result", addition)
         setResult(12, intent)
         finish()
-*/
+*//*
         Glide.with(this)
             .load("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png/200px-Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png")
-            .into(iv_thirdpartydemo)
+            .into(iv_thirdpartydemo)*/
 
     }
 }
